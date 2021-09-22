@@ -1,8 +1,10 @@
 CC = gcc
-CFLAGS = -O2 -fopenmp
+CFLAGS = -O2 -fopenmp -DSTREAM_ARRAY_SIZE=36000000
 
 FC = gfortran
 FFLAGS = -O2 -fopenmp
+
+default: stream_c.exe
 
 all: stream_f.exe stream_c.exe
 
@@ -16,6 +18,8 @@ stream_c.exe: stream.c
 
 clean:
 	rm -f stream_f.exe stream_c.exe *.o
+
+.PHONY: default all clean
 
 # an example of a more complex build line for the Intel icc compiler
 stream.icc: stream.c
